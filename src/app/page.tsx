@@ -1,69 +1,68 @@
-import Image from "next/image";
+"use client";
+
+import React from "react";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Philosophy from "@/components/Philosophy";
+import About from "@/components/About";
+import Services from "@/components/Services";
+import Conditions from "@/components/Conditions";
+import Psychotherapy from "@/components/Psychotherapy";
+import Awareness from "@/components/Awareness";
+import ReelsSection from "@/components/ReelsSection";
+import GoogleReviews from "@/components/GoogleReviews";
+import HomeBlogs from "@/components/HomeBlogs";
+import Faqs from "@/components/Faqs";
+import Clinic from "@/components/Clinic";
+import Footer from "@/components/Footer";
+import { useBooking } from "@/context/BookingContext";
 
 export default function Home() {
+  const { openBooking } = useBooking();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="relative min-h-screen bg-[#F7F3EA] text-[#1D2A3A] selection:bg-[#2D5A47]/15 selection:text-[#182333]">
+      {/* Navigation */}
+      <Navbar onOpenBooking={() => openBooking("in-person")} />
+
+      {/* 1. Hero Section */}
+      <Hero onOpenBooking={() => openBooking("in-person")} />
+
+      {/* MANAM Philosophy */}
+      <Philosophy />
+
+      {/* 2. About Dr. Bhoomi */}
+      <About />
+
+      {/* 3. Services (Including Ketamine & ECT) */}
+      <Services />
+
+      {/* 4. Conditions (Including Headaches/Migraines, Geriatric, Somatic, Internet & Digital) */}
+      <Conditions onOpenBooking={() => openBooking("in-person")} />
+
+      {/* 5. Psychotherapy */}
+      <Psychotherapy onOpenBooking={() => openBooking("in-person")} />
+
+      {/* Addition: Mental Health Awareness & Education */}
+      <Awareness />
+
+      {/* Client Instagram Reels & Short Psychoeducation */}
+      <ReelsSection />
+
+      {/* Google Verified Reviews (Horizontally Scrollable) */}
+      <GoogleReviews />
+
+      {/* Clinical Blogs & Insights */}
+      <HomeBlogs />
+
+      {/* 6. Frequently Asked Questions */}
+      <Faqs onOpenBooking={() => openBooking("in-person")} />
+
+      {/* 7. Clinic & In-person / Online Consultation Info */}
+      <Clinic onOpenBooking={() => openBooking("in-person")} />
+
+      {/* Footer */}
+      <Footer />
+    </main>
   );
 }

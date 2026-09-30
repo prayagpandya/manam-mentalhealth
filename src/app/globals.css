@@ -1,26 +1,63 @@
 @import "tailwindcss";
 
+@theme {
+  --font-serif: var(--font-serif), "Playfair Display", Georgia, serif;
+  --font-sans: var(--font-sans), "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --color-brand-bg: #F7F3EA;
+  --color-brand-dark: #192A3E;
+  --color-brand-slate: #546274;
+  --color-brand-sage: #2D5A47;
+  --color-brand-accent: #3A6053;
+  --color-brand-border: #E5DFD3;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F7F3EA;
+  --foreground: #1D2A3A;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F7F3EA;
+  color: #1D2A3A;
+  font-family: var(--font-sans), "Plus Jakarta Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .font-serif-heading {
+  font-family: var(--font-serif), Georgia, serif;
+  letter-spacing: -0.015em;
+}
+
+button, [role="button"], a, input[type="button"], input[type="submit"], input[type="reset"] {
+  cursor: pointer;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F0EAE0;
+}
+::-webkit-scrollbar-thumb {
+  background: #C8BFB0;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A99F8E;
+}
+
+/* Subtle line clamp and animations */
+.arch-frame {
+  border-top-left-radius: 180px;
+  border-top-right-radius: 180px;
+}
+
+.arch-frame-subtle {
+  border-top-left-radius: 80px;
+  border-top-right-radius: 80px;
 }
