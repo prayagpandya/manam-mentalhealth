@@ -186,12 +186,6 @@ export default async function DedicatedTreatmentPage({ params }: PageProps) {
                     className="object-cover hover:scale-105 transition-transform duration-700"
                     sizes="(max-width: 1024px) 100vw, 40vw"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/35 via-transparent to-transparent pointer-events-none" />
-                  
-                  <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-xl bg-[#FAF7F2]/95 backdrop-blur-xs border border-[#E0D8CA] text-xs text-[#354556] shadow-xs">
-                    <span className="font-semibold text-brand-sage block mb-0.5">Clinical Supervision:</span>
-                    <span>{treatment.supervision}</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -333,53 +327,61 @@ export default async function DedicatedTreatmentPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* Section 4: The Care Journey & Process (Color 2: #ECE4D7) */}
-        <section className="py-20 md:py-28 bg-[#ECE4D7]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-brand-sage uppercase block mb-3">
-                CARE JOURNEY
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-serif text-[#162534] font-normal leading-tight">
-                What to Expect Step-by-Step
-              </h2>
-              <p className="text-base text-[#506070] font-light mt-3">
-                A structured, transparent pathway designed to keep you informed, supported, and in control.
-              </p>
-            </div>
+        {/* Section 4: The Care Journey & Process (Color 2: #ECE4D7) - Omitted for Psychotherapy */}
+        {treatment.slug !== "psychotherapy" && (
+          <section className="py-20 md:py-28 bg-[#ECE4D7]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center max-w-2xl mx-auto mb-16">
+                <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-brand-sage uppercase block mb-3">
+                  CARE JOURNEY
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-serif text-[#162534] font-normal leading-tight">
+                  What to Expect Step-by-Step
+                </h2>
+                <p className="text-base text-[#506070] font-light mt-3">
+                  A structured, transparent pathway designed to keep you informed, supported, and in control.
+                </p>
+              </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {(treatment.journeySteps || []).map((stepItem, sIdx) => (
-                <div
-                  key={sIdx}
-                  className="p-6 rounded-2xl bg-[#FAF7F2] border border-[#DDD4C5] shadow-xs relative flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-xs font-semibold tracking-wider text-brand-sage px-2.5 py-1 rounded-md bg-[#EAE2D3]">
-                        Step {stepItem.step}
-                      </span>
-                      <span className="text-[11px] text-[#7A8998] font-medium">
-                        {stepItem.duration}
-                      </span>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {(treatment.journeySteps || []).map((stepItem, sIdx) => (
+                  <div
+                    key={sIdx}
+                    className="p-6 rounded-2xl bg-[#FAF7F2] border border-[#DDD4C5] shadow-xs relative flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-xs font-semibold tracking-wider text-brand-sage px-2.5 py-1 rounded-md bg-[#EAE2D3]">
+                          Step {stepItem.step}
+                        </span>
+                        <span className="text-[11px] text-[#7A8998] font-medium">
+                          {stepItem.duration}
+                        </span>
+                      </div>
+
+                      <h3 className="font-serif text-xl text-[#162534] font-medium mb-2.5 leading-snug">
+                        {stepItem.title}
+                      </h3>
+
+                      <p className="text-sm text-[#4E5C6C] font-light leading-relaxed">
+                        {stepItem.description}
+                      </p>
                     </div>
-
-                    <h3 className="font-serif text-xl text-[#162534] font-medium mb-2.5 leading-snug">
-                      {stepItem.title}
-                    </h3>
-
-                    <p className="text-sm text-[#4E5C6C] font-light leading-relaxed">
-                      {stepItem.description}
-                    </p>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
-        {/* Section 5: Specific Treatment FAQs (Color 1: #F7F3EA) */}
-        <section className="py-20 md:py-28 bg-brand-bg border-b border-[#E8E2D5]">
+        {/* Section 5: Specific Treatment FAQs */}
+        <section
+          className={`py-20 md:py-28 ${
+            treatment.slug === "psychotherapy"
+              ? "bg-[#ECE4D7]"
+              : "bg-brand-bg border-b border-[#E8E2D5]"
+          }`}
+        >
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-14">
               <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-brand-sage uppercase block mb-3">
@@ -409,8 +411,14 @@ export default async function DedicatedTreatmentPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* Section 6: Consultation Booking CTA & Related Navigation (Color 2: #ECE4D7) */}
-        <section className="py-20 md:py-28 bg-[#ECE4D7]">
+        {/* Section 6: Consultation Booking CTA & Related Navigation */}
+        <section
+          className={`py-20 md:py-28 ${
+            treatment.slug === "psychotherapy"
+              ? "bg-brand-bg border-b border-[#E8E2D5]"
+              : "bg-[#ECE4D7]"
+          }`}
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Consultation Action Card */}
             <div className="p-8 sm:p-12 rounded-3xl bg-[#FAF7F2] border border-[#DDD4C5] shadow-sm text-center max-w-3xl mx-auto mb-16">

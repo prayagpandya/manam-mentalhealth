@@ -732,7 +732,7 @@ export default function AdminPage() {
           </div>
 
           {/* Navigation Tabs */}
-          <div className="inline-flex p-1 rounded-xl bg-[#EFE8DC] border border-[#D5CABE] self-start md:self-auto shadow-2xs">
+          <div className="inline-flex max-w-full overflow-x-auto p-1 rounded-xl bg-[#EFE8DC] border border-[#D5CABE] self-start md:self-auto shadow-2xs scrollbar-none">
             <button
               onClick={() => setActiveTab("gallery")}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all cursor-pointer ${

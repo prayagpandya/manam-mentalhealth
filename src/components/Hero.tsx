@@ -126,21 +126,6 @@ export default function Hero({ onOpenBooking }: HeroProps) {
                   />
                 </div>
               </div>
-
-              {/* Verified Gold Medalist Floating Badge */}
-              <div className="absolute -bottom-3 left-1 sm:-left-3 bg-[#FAF7F2] border border-[#DDD5C7] shadow-md rounded-xl p-2 sm:p-2.5 px-3 sm:px-3.5 flex items-center gap-2 sm:gap-2.5 max-w-[calc(100%-1rem)] sm:max-w-none">
-                <div className="w-7 h-7 rounded-full bg-[#2D5A47]/15 flex items-center justify-center text-[#2D5A47] font-serif font-bold text-xs shrink-0">
-                  ★
-                </div>
-                <div>
-                  <p className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[#2D5A47]">
-                    Gold Medalist
-                  </p>
-                  <p className="text-[11px] sm:text-xs text-[#435262]">
-                    MD Psychiatry • PDU Medical College
-                  </p>
-                </div>
-              </div>
             </div>
           </motion.div>
         </div>

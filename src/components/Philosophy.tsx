@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import manamPhilosophyImg from "../../public/assets/manam_philosophy.webp";
 
 export default function Philosophy() {
   return (
@@ -23,9 +24,10 @@ export default function Philosophy() {
             </span>
             <div className="relative w-full max-w-[360px] aspect-square rounded-2xl overflow-hidden shadow-md border border-[#D8CFBF] bg-[#FAF6EE]">
               <Image
-                src="/assets/manam_philosophy.webp"
+                src={manamPhilosophyImg}
                 alt="MANAM Philosophy - Mental Healthcare Begins With Understanding"
                 fill
+                priority
                 className="object-cover hover:scale-105 transition-transform duration-500"
                 sizes="(max-width: 768px) 100vw, 360px"
               />

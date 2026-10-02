@@ -126,9 +126,14 @@ export default function PsychotherapyPage() {
                 Therapy is Not Just Talking. It is Rewiring.
               </h1>
 
-              <p className="text-base sm:text-lg text-[#4B5A6A] font-light leading-relaxed">
-                Psychotherapy is a structured, clinical process of understanding cognitive loops, processing emotional wounds, and building enduring behavioral resilience. Dr. Bhoomi Raval integrates medical psychiatric insight with evidence-based psychotherapy.
-              </p>
+              <div className="space-y-4 text-base sm:text-lg text-[#4B5A6A] font-light leading-relaxed">
+                <p>
+                  Psychotherapy is a collaborative process of understanding what you are going through, recognising patterns in thoughts, emotions and behaviour, and working towards meaningful change.
+                </p>
+                <p>
+                  At MANAM, psychotherapy is individualised to the person rather than limited to a single therapeutic approach. Dr. Bhoomi Raval primarily follows an <span className="italic text-[#162534]">eclectic and integrated approach to psychotherapy</span>, drawing from different evidence-based therapeutic frameworks depending on the individual&apos;s concerns, personality, needs, goals and stage of treatment.
+                </p>
+              </div>
 
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <button
@@ -181,7 +186,7 @@ export default function PsychotherapyPage() {
       {/* What is Eclectic & Integrated Psychotherapy? - Color (#FAF7F2) */}
       <section className="py-20 md:py-28 bg-[#FAF7F2] border-b border-[#E8E2D5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             {/* Left Content Column */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
@@ -191,9 +196,6 @@ export default function PsychotherapyPage() {
               className="lg:col-span-7 space-y-6"
             >
               <div>
-                <span className="text-xs font-semibold tracking-[0.2em] text-[#2D5A47] uppercase block mb-2.5">
-                  THE MANAM PHILOSOPHY
-                </span>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[#162534] font-normal tracking-tight leading-[1.15]">
                   What is Eclectic &amp; Integrated Psychotherapy?
                 </h2>
@@ -248,36 +250,39 @@ export default function PsychotherapyPage() {
               </div>
             </motion.div>
 
-            {/* Right Visual Column */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="lg:col-span-5 lg:sticky lg:top-28"
-            >
-              <div className="relative aspect-4/3 w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-[#DDD4C5] shadow-lg bg-[#ECE4D7]">
-                <Image
-                  src="/assets/eclectic_integrated_psychotherapy.webp"
-                  alt="Eclectic and Integrated Psychotherapy consultation setting at MANAM"
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-[#FAF7F2]/95 backdrop-blur-xs border border-[#E0D8CA] text-xs shadow-xs">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="w-2 h-2 rounded-full bg-[#2D5A47]" />
-                    <span className="font-semibold text-[#2D5A47] uppercase tracking-wider text-[11px]">
-                      Personalized Care
-                    </span>
+            {/* Right Visual Column - Stretches full column height with inner sticky container */}
+            <div className="lg:col-span-5 relative">
+              <div className="lg:sticky lg:top-28">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.7, delay: 0.15 }}
+                >
+                <div className="relative aspect-4/3 w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-[#DDD4C5] shadow-lg bg-[#ECE4D7]">
+                  <Image
+                    src="/assets/eclectic_integrated_psychotherapy.webp"
+                    alt="Eclectic and Integrated Psychotherapy consultation setting at MANAM"
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-[#FAF7F2]/95 backdrop-blur-xs border border-[#E0D8CA] text-xs shadow-xs">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-2 h-2 rounded-full bg-[#2D5A47]" />
+                      <span className="font-semibold text-[#2D5A47] uppercase tracking-wider text-[11px]">
+                        Personalized Care
+                      </span>
+                    </div>
+                    <p className="text-[#4A5969] leading-relaxed">
+                      Tailored evidence-based modalities shaped around your individuality, goals, and pace of healing.
+                    </p>
                   </div>
-                  <p className="text-[#4A5969] leading-relaxed">
-                    Tailored evidence-based modalities shaped around your individuality, goals, and pace of healing.
-                  </p>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
+            </div>
           </div>
         </div>
       </section>

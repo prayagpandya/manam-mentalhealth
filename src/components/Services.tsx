@@ -32,8 +32,8 @@ export default function Services() {
       num: "03",
       slug: "adolescent",
       title: "Adolescent mental health",
-      image: "/assets/service_adolescent.webp",
-      altText: "Comfortable, welcoming adolescent counseling lounge with bookshelves",
+      image: "/assets/service_adolescent_v2.webp",
+      altText: "Indian female psychiatrist in clinic consultation with an Indian adolescent boy and mother",
       description:
         "Compassionate, age-appropriate guidance for teenagers navigating emotional distress, academic pressures, peer challenges, and self-worth.",
       tags: ["Academic stress", "Youth wellness", "Family guidance"],
@@ -52,8 +52,8 @@ export default function Services() {
       num: "05",
       slug: "de-addiction",
       title: "De-addiction & recovery",
-      image: "/assets/service_deaddiction.webp",
-      altText: "Mindful recovery consultation room with natural wooden table",
+      image: "/assets/service_deaddiction_v2.webp",
+      altText: "Empathetic de-addiction consultation between Indian psychiatrist and patient in clinic",
       description:
         "Confidential outpatient medical detoxification and psychological support for substance use, addressing co-occurring anxiety and depression.",
       tags: ["Medical detox", "Dual diagnosis", "Relapse prevention"],

@@ -15,7 +15,7 @@ export default function Awareness() {
         "Sensitization sessions on emotional regulation, peer dynamics, academic stress, and early identification of mood and anxiety concerns in teenagers.",
       icon: Users,
       image: "/assets/12.webp",
-      caption: "National Task Force session on adolescent wellness in college",
+      caption: "Session on adolescent mental health at Virani College",
     },
     {
       title: "Mental Health Awareness",

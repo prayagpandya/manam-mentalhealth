@@ -130,7 +130,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
           <div className="flex md:hidden items-center gap-2">
             <button
               onClick={handleBooking}
-              className="px-3.5 py-1.5 rounded-md bg-[#536374] text-white text-xs font-medium"
+              className="sm:hidden px-3.5 py-1.5 rounded-md bg-[#536374] text-white text-xs font-medium"
             >
               Book
             </button>

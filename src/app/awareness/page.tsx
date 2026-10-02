@@ -35,7 +35,7 @@ export default function AwarenessPage() {
       title: "Mental health awareness session in college",
       category: "Youth & Educational Institutions",
       image: "/assets/12.webp",
-      caption: "National Task Force session on adolescent wellness in college",
+      caption: "Session on adolescent mental health at Virani College",
       desc: "Interactive, age-appropriate sessions designed to help teenagers understand emotional regulation, manage academic expectations, cope with peer dynamics, and identify early warning signs of mood and anxiety concerns before they compound.",
       topics: [
         "Exam stress, performance paralysis, and healthy study habits",

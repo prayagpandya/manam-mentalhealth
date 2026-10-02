@@ -30,7 +30,7 @@ export default function GoogleReviews() {
   };
 
   return (
-    <section id="reviews" className="py-20 md:py-28 bg-[#F4EFE6] border-y border-[#E6DEC $\rightarrow$ #E5DEC $\rightarrow$ #E2D9CB] border-[#E3DACE] overflow-hidden">
+    <section id="reviews" className="py-20 md:py-28 bg-[#F4EFE6] border-y border-[#E3DACE] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 pb-6 border-b border-[#D8CFC0]">
@@ -127,7 +127,7 @@ export default function GoogleReviews() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.05 }}
-              className="w-[310px] sm:w-[360px] md:w-[390px] shrink-0 snap-start bg-[#FAF6EE] rounded-2xl p-6 sm:p-7 border border-[#E3D9CC] hover:border-[#2D5A47]/40 hover:shadow-md transition-all duration-300 flex flex-col justify-between relative group"
+              className="w-[85vw] max-w-[320px] sm:w-[360px] md:w-[390px] shrink-0 snap-start bg-[#FAF6EE] rounded-2xl p-6 sm:p-7 border border-[#E3D9CC] hover:border-[#2D5A47]/40 hover:shadow-md transition-all duration-300 flex flex-col justify-between relative group"
             >
               {/* Decorative Quote mark */}
               <Quote className="absolute top-5 right-5 w-8 h-8 text-[#2D5A47]/10 pointer-events-none" />

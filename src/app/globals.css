@@ -24,7 +24,7 @@ body {
   background-color: #F7F3EA;
   color: #1D2A3A;
   font-family: var(--font-sans), "Plus Jakarta Sans", sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 h1, h2, h3, .font-serif-heading {
