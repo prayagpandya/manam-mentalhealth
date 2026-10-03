@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import fs from "fs/promises";
+import fs from "fs";
 import path from "path";
+
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
   try {
@@ -25,29 +28,24 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 1. Extension and MIME type check
+    // 1. Extension and format verification
     const originalName = file.name || "";
     const lowerName = originalName.toLowerCase();
     const ext = path.extname(lowerName);
 
-    const isImage = ext === ".webp";
-    const isVideo = ext === ".mp4" || ext === ".webm";
+    const isWebpExt = ext === ".webp" || lowerName.endsWith(".webp");
+    const isVideoExt = ext === ".mp4" || ext === ".webm" || lowerName.endsWith(".mp4") || lowerName.endsWith(".webm");
+    const isImageMime = file.type.startsWith("image/");
+    const isVideoMime = file.type.startsWith("video/");
+
+    const isImage = isWebpExt || isImageMime;
+    const isVideo = isVideoExt || isVideoMime;
 
     if (!isImage && !isVideo) {
       return NextResponse.json(
         {
           success: false,
           message: "Invalid file format. Only .webp images or .mp4 / .webm videos are allowed.",
-        },
-        { status: 400 }
-      );
-    }
-
-    if (isImage && file.type !== "image/webp") {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Invalid MIME type. Only 'image/webp' is permitted for images.",
         },
         { status: 400 }
       );
@@ -60,7 +58,7 @@ export async function POST(req: NextRequest) {
       // Magic bytes check (RIFF ... WEBP)
       if (buffer.length < 12) {
         return NextResponse.json(
-          { success: false, message: "Corrupted or invalid file." },
+          { success: false, message: "Corrupted or invalid image file." },
           { status: 400 }
         );
       }
@@ -78,17 +76,20 @@ export async function POST(req: NextRequest) {
     }
 
     // Ensure uploads directory exists
-    const uploadsDir = path.join(process.cwd(), "public", "uploads");
-    await fs.mkdir(uploadsDir, { recursive: true });
+    const uploadsDir = path.resolve(process.cwd(), "public", "uploads");
+    if (!fs.existsSync(uploadsDir)) {
+      fs.mkdirSync(uploadsDir, { recursive: true });
+    }
 
     // Clean filename: timestamp + sanitized base
     const rawBase = path.basename(originalName, ext);
     const baseName = rawBase.replace(/[^a-zA-Z0-9_-]/g, "_").toLowerCase();
-    const fileName = `${Date.now()}_${baseName || (isVideo ? "video" : "image")}${ext}`;
+    const finalExt = ext || (isVideo ? ".mp4" : ".webp");
+    const fileName = `${Date.now()}_${baseName || (isVideo ? "video" : "image")}${finalExt}`;
     const filePath = path.join(uploadsDir, fileName);
 
     // Write file to project folder
-    await fs.writeFile(filePath, buffer);
+    fs.writeFileSync(filePath, buffer);
 
     // Public path stored in MongoDB
     const publicPath = `/uploads/${fileName}`;
@@ -102,10 +103,11 @@ export async function POST(req: NextRequest) {
       fileType: isVideo ? "video" : "image",
       message: `${isVideo ? "Video" : "Image"} uploaded and stored successfully in project folder.`,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Upload error:", error);
+    const errMessage = error?.message || (typeof error === "string" ? error : "Failed to upload image.");
     return NextResponse.json(
-      { success: false, message: "Failed to upload image." },
+      { success: false, message: `Upload error: ${errMessage}` },
       { status: 500 }
     );
   }

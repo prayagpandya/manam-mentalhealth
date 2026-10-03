@@ -188,9 +188,10 @@ function WebpUploadBox({
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Strict client-side validation
-    if (!file.name.toLowerCase().endsWith(".webp") || file.type !== "image/webp") {
-      setError("STRICT REQUIREMENT: Only .webp files are allowed. Please convert or select a .webp image.");
+    // Flexible client-side validation
+    const isWebp = file.name.toLowerCase().endsWith(".webp") || file.type === "image/webp";
+    if (!isWebp) {
+      setError("STRICT REQUIREMENT: Only .webp files are allowed. Please select a .webp image.");
       if (fileInputRef.current) fileInputRef.current.value = "";
       return;
     }
@@ -210,8 +211,9 @@ function WebpUploadBox({
         throw new Error(data.message || "Upload failed");
       }
 
-      setPreview(data.url);
-      onUploaded(data.url);
+      const uploadedUrl = data.url || data.path;
+      setPreview(uploadedUrl);
+      onUploaded(uploadedUrl);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Failed to upload image";
       setError(msg);
@@ -219,6 +221,12 @@ function WebpUploadBox({
       setUploading(false);
       if (fileInputRef.current) fileInputRef.current.value = "";
     }
+  };
+
+  const handleManualPathChange = (newVal: string) => {
+    setError(null);
+    setPreview(newVal);
+    onUploaded(newVal);
   };
 
   const cleanLabel = label.replace(/\s*\(\*\.webp.*?\)/gi, "").trim();
@@ -229,20 +237,20 @@ function WebpUploadBox({
         {cleanLabel} <span className="text-[#C29D59] font-bold">(*.webp)</span>
       </label>
 
-      <div className="flex items-center gap-3 p-3 border-2 border-dashed border-[#D5CABE] rounded-xl bg-[#FAF7F0] overflow-hidden">
+      <div className="flex items-start gap-3 p-3 border-2 border-dashed border-[#D5CABE] rounded-xl bg-[#FAF7F0] overflow-hidden">
         {preview ? (
-          <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border border-[#D5CABE] bg-[#EFE8DC] shrink-0">
+          <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border border-[#D5CABE] bg-[#EFE8DC] shrink-0 mt-0.5">
             <Image src={preview} alt="Preview" fill className="object-cover" sizes="80px" />
           </div>
         ) : (
-          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg bg-[#EFE8DC] border border-[#D5CABE] flex flex-col items-center justify-center text-[#8898AA] shrink-0">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg bg-[#EFE8DC] border border-[#D5CABE] flex flex-col items-center justify-center text-[#8898AA] shrink-0 mt-0.5">
             <Upload className="w-5 h-5 mb-1 text-[#8898AA]" />
             <span className="text-[9px]">No image</span>
           </div>
         )}
 
-        <div className="flex-1 min-w-0 space-y-1.5">
-          <div>
+        <div className="flex-1 min-w-0 space-y-2">
+          <div className="flex flex-wrap items-center gap-2">
             <input
               ref={fileInputRef}
               type="file"
@@ -274,16 +282,21 @@ function WebpUploadBox({
             </label>
           </div>
 
-          {preview && (
-            <p className="text-[10px] text-[#2D5A47] font-mono truncate max-w-full block" title={preview}>
-              {preview.split("/").pop()}
-            </p>
-          )}
+          <div>
+            <input
+              type="text"
+              value={preview}
+              onChange={(e) => handleManualPathChange(e.target.value)}
+              placeholder="Or enter path e.g. /assets/service_deaddiction.webp"
+              className="w-full text-xs px-2.5 py-1.5 rounded-lg border border-[#D5CABE] bg-white text-[#162534] font-mono focus:outline-none focus:ring-1 focus:ring-[#2D5A47]"
+              title="You can also directly edit or paste an asset path"
+            />
+          </div>
 
           {error && (
             <div className="flex items-center gap-1.5 text-xs text-red-600 bg-red-50 p-2 rounded border border-red-200">
               <AlertCircle className="w-4 h-4 shrink-0" />
-              <span className="truncate">{error}</span>
+              <span className="break-all">{error}</span>
             </div>
           )}
         </div>

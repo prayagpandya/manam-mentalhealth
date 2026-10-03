@@ -32,7 +32,7 @@ export default function Services() {
       num: "03",
       slug: "adolescent",
       title: "Adolescent mental health",
-      image: "/assets/service_adolescent_v2.webp",
+      image: "/assets/service_adolescent.webp",
       altText: "Indian female psychiatrist in clinic consultation with an Indian adolescent boy and mother",
       description:
         "Compassionate, age-appropriate guidance for teenagers navigating emotional distress, academic pressures, peer challenges, and self-worth.",
@@ -52,7 +52,7 @@ export default function Services() {
       num: "05",
       slug: "de-addiction",
       title: "De-addiction & recovery",
-      image: "/assets/service_deaddiction_v2.webp",
+      image: "/assets/service_deaddiction.webp",
       altText: "Empathetic de-addiction consultation between Indian psychiatrist and patient in clinic",
       description:
         "Confidential outpatient medical detoxification and psychological support for substance use, addressing co-occurring anxiety and depression.",

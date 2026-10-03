@@ -11,7 +11,7 @@ interface BookingModalProps {
   defaultType?: "in-person" | "online";
 }
 
-export const WHATSAPP_NUMBER = "919426915152"; // Dr. Bhoomi / MANAM clinic WhatsApp line
+export const WHATSAPP_NUMBER = "919512448538"; // Dr. Bhoomi / MANAM clinic WhatsApp line
 export const DEFAULT_WHATSAPP_MESSAGE =
   "Hi Dr. Bhoomi, I came across MANAM Mental Health and would like to enquire about booking a consultation. Could you please share the available appointments?";
 
