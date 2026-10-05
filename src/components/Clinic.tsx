@@ -28,7 +28,7 @@ export default function Clinic({ onOpenBooking }: ClinicProps) {
   ];
 
   const googleMapsUrl =
-    "https://maps.google.com/?q=Kotak+Hospital+Moti+Tanki+Chowk+Rajkot+Gujarat+360001";
+    "https://maps.app.goo.gl/kyNUpPPgCQ5PrPnG6";
 
   return (
     <section id="clinic" className="py-20 md:py-32 bg-[#F7F3EA]">

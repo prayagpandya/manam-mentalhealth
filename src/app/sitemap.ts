@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 3600; // Revalidate every hour
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.manammentalhealth.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://manammentalhealth.com";
   const baseUrl = siteUrl.replace(/\/+$/, "");
   const now = new Date();
 

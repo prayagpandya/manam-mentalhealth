@@ -18,7 +18,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.manammentalhealth.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://manammentalhealth.com"),
   title: "MANAM | Dr. Bhoomi Raval - Consultant Psychiatrist (Gold Medalist)",
   description:
     "Pause. Reflect. Heal. Consultant Psychiatrist in Rajkot & Online Consultations. Psychiatric assessment, evidence-based treatment, and psychotherapy.",
